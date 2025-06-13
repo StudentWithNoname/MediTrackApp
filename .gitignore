@@ -1,22 +1,46 @@
-Thumbs.db
+# Dependency-Verzeichnis
+node_modules/
+
+# Build-Output
+build/
+dist/
+
+# Editor-/IDE-Einstellungen
+.vscode/
+.idea/
+*.sublime-*
+
+# OS-spezifische Dateien
 .DS_Store
-node_modules
+Thumbs.db
+*.swp
+
+# Logs
 *.log
-config.json
-.eslintcache
-.stylelintcache
-.nyc_output
-coverage
-test-reports
-releases
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Paket-Manager-Caches
+.yarn/
+.pnpm-store/
+.cache/
+
+# Umgebungsdateien / Secrets
 .env
-package-lock.json
-build/**
-data
-out
-forge.tmp.json
-forge-bundle
-maps-data
-.firebase
-.yarn
-functions/static/**
+.env.*.local
+
+# Berichte & Tests
+coverage/
+.nyc_output/
+test-reports/
+
+# Temporäre Dateien / Generierte Daten
+*.tmp
+*.bak
+
+# Git
+.git/
+
+# Optional: Lockfile ignorieren, wenn du nicht `yarn.lock` **und** `package-lock.json` verwenden willst
+# package-lock.json
