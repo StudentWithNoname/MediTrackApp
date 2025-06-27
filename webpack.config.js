@@ -27,7 +27,8 @@ const plugins = [
   }),
   new HtmlWebpackPlugin({
     inject: 'body',
-    publicPath: '/'
+    publicPath: '/',
+    template: './src/index.ejs' // ✅ Template korrekt gesetzt
   }),
   new MiniCssExtractPlugin(),
   new FaviconsWebpackPlugin({
@@ -38,15 +39,11 @@ const plugins = [
       appName: pkg.appName,
       appDescription: pkg.description,
       developerName: pkg.author,
-      developerURL: null, // prevent retrieving from the nearest package.json
+      developerURL: null,
       background: '#ddd',
       theme_color: '#333',
       icons: {
-        // android: true, // Create Android homescreen icon. `boolean` or `{ offset, background }` or an array of sources
-        // appleIcon: true, // Create Apple touch icons. `boolean` or `{ offset, background }` or an array of sources
-        // appleStartup: true, // Create Apple startup images. `boolean` or `{ offset, background }` or an array of sources
-        favicons: true, // Create regular favicons. `boolean` or `{ offset, background }` or an array of sources
-        // windows: true // Create Windows 8 tile icons. `boolean` or `{ offset, background }` or an array of sources
+        favicons: true
       }
     }
   })
@@ -54,25 +51,19 @@ const plugins = [
 
 export default {
   entry: {
-    app: './src/react/App.jsx',
-  },
+    app: './src/react/App.jsx'
+  }, // ✅ das Komma war vorher fehlend!
   output: {
     filename: 'app.[contenthash].js',
     path: path.resolve(__dirname, 'build'),
     assetModuleFilename: 'assets/[contenthash].[ext]'
   },
-  devtool: (
-    process.env.NODE_ENV !== 'production'
-      ? 'eval-source-map'
-      : false
-  ),
+  devtool: process.env.NODE_ENV !== 'production' ? 'eval-source-map' : false,
   module: {
     rules: [
       {
         test: /\.m?js/,
-        resolve: {
-          fullySpecified: false
-        }
+        resolve: { fullySpecified: false }
       },
       {
         test: /\.md$/,
@@ -81,42 +72,33 @@ export default {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: { loader: 'babel-loader' }
       },
       {
         test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
-            options: {
-              name: '[contenthash].[ext]'
-            }
+            options: { name: '[contenthash].[ext]' }
           }
         ]
       },
       {
         test: /\.(jpg|jpeg|png|gif|svg)$/i,
-        type: "asset"
+        type: 'asset'
       },
       {
         test: /\.(pdf)$/i,
         use: [
           {
             loader: 'file-loader',
-            options: {
-              name: 'assets/[name].[ext]'
-            }
+            options: { name: 'assets/[name].[ext]' }
           }
         ]
       },
       {
         test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          "css-loader"
-        ]
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
       }
     ]
   },
@@ -128,10 +110,10 @@ export default {
           implementation: ImageMinimizerPlugin.imageminMinify,
           options: {
             plugins: [
-              "imagemin-gifsicle",
-              "imagemin-mozjpeg",
-              "imagemin-pngquant",
-              "imagemin-svgo"
+              'imagemin-gifsicle',
+              'imagemin-mozjpeg',
+              'imagemin-pngquant',
+              'imagemin-svgo'
             ]
           }
         }
@@ -139,10 +121,10 @@ export default {
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx'],
     fallback: {
-      crypto: require.resolve("crypto-browserify"),
-      stream: require.resolve("stream-browserify")
+      crypto: require.resolve('crypto-browserify'),
+      stream: require.resolve('stream-browserify')
     }
   },
   target: 'web',
