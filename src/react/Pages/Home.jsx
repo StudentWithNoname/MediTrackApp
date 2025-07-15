@@ -1,19 +1,6 @@
 import React from 'react'
+import OnboardingContainer from '../Containers/OnboardingContainer'
 
-import { Stack, Typography } from '@mui/material'
-
-const Home = () => (
-  <Stack
-    flex="1 1 auto"
-    justifyContent="center"
-    alignItems="center"
-  >
-    <Typography
-      variant="h4"
-    >
-      Welcome to the App
-    </Typography>
-  </Stack>
-)
+const Home = () => <OnboardingContainer />
 
 export default Home
