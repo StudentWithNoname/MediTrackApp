@@ -1,18 +1,18 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
 
-import Home from './Pages/Home';
-import CatNames from './Pages/CatNames/CatNames';
-import Profile from './Pages/Profile/Profile';
-import ProfileOverview from './Pages/Profile/ProfileOverview';
-import ProfileSettings from './Pages/Profile/ProfileSettings';
-import Error404 from './Pages/Error404';
+import Home from './Pages/Home'
+import CatNames from './Pages/CatNames/CatNames'
+import Profile from './Pages/Profile/Profile'
+import ProfileOverview from './Pages/Profile/ProfileOverview'
+import ProfileSettings from './Pages/Profile/ProfileSettings'
+import Error404 from './Pages/Error404'
 
 // ➕ Meditrack-Pages
-import Onboarding from './Pages/Onboarding';
-import StandardMedicationScreen from './Pages/StandardMedicationScreen';
-import ExtraMedicationScreen from './Pages/ExtraMedicationScreen';
-import StandardMedicationListScreen from './Pages/StandardMedicationListScreen'; // hinzufügen
+import Onboarding from './Pages/Onboarding'
+import StandardMedicationScreen from './Pages/StandardMedicationScreen'
+import ExtraMedicationScreen from './Pages/ExtraMedicationScreen'
+import StandardMedicationListScreen from './Pages/StandardMedicationListScreen'
 
 const AppRoutes = () => (
   <Routes>
@@ -36,6 +36,6 @@ const AppRoutes = () => (
     {/* Fallback für nicht gefundene Routen */}
     <Route path="*" element={<Error404 />} />
   </Routes>
-);
+)
 
-export default AppRoutes;
+export default AppRoutes

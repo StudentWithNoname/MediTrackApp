@@ -1,41 +1,75 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
+import {
+  Box,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+  Divider,
+  Paper
+} from '@mui/material'
 
 const StandardMedicationListScreen = () => {
-  const [medications, setMedications] = useState([]);
+  const [medications, setMedications] = useState([])
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('standardMedications')) || [];
-    setMedications(stored);
-  }, []);
+    const stored = JSON.parse(localStorage.getItem('standardMedications')) || []
+    setMedications(stored)
+  }, [])
 
   const handleClearAll = () => {
-    localStorage.removeItem('standardMedications');
-    setMedications([]);
-  };
+    localStorage.removeItem('standardMedications')
+    setMedications([])
+  }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h2>Gespeicherte Standard-Medikationen</h2>
+    <Box sx={{
+      padding: 4,
+      maxWidth: {
+        xs: '90%',
+        sm: 600
+      },
+      margin: '0 auto'
+    }}
+    >
+      <Typography variant="h5" gutterBottom>
+        Gespeicherte Standard-Medikationen
+      </Typography>
 
       {medications.length === 0 ? (
-        <p>Keine Einträge vorhanden.</p>
+        <Typography variant="body1">Keine Einträge vorhanden.</Typography>
       ) : (
-        <ul>
-          {medications.map((med, index) => (
-            <li key={index}>
-              <strong>{med.name}</strong> – {med.dosage}, {med.frequency}× täglich
-            </li>
-          ))}
-        </ul>
+        <Paper elevation={3}>
+          <List>
+            {medications.map((med, index) => (
+              <React.Fragment key={med.id || `${med.name}-${index}`}>
+                <ListItem>
+                  <ListItemText
+                    primary={`${med.name} – ${med.dosage}`}
+                    secondary={`${med.frequency}× täglich`}
+                  />
+                </ListItem>
+                {index < medications.length - 1 && <Divider />}
+              </React.Fragment>
+            ))}
+          </List>
+        </Paper>
       )}
 
       {medications.length > 0 && (
-        <button onClick={handleClearAll} style={{ marginTop: '1rem' }}>
-          Alle löschen
-        </button>
+        <Box sx={{ textAlign: 'center', marginTop: 3 }}>
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={handleClearAll}
+          >
+            Alle löschen
+          </Button>
+        </Box>
       )}
-    </div>
-  );
-};
+    </Box>
+  )
+}
 
-export default StandardMedicationListScreen;
+export default StandardMedicationListScreen

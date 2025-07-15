@@ -1,12 +1,10 @@
-import React from 'react';
-import StandardMedicationForm from '../Components/StandardMedicationForm';
-console.log('✅ StandardMedicationScreen geladen');
+import React from 'react'
+import StandardMedicationForm from '../Components/StandardMedicationForm'
 
 const StandardMedicationScreen = () => (
-  <div style={{ padding: '2rem', maxWidth: '500px', margin: '0 auto' }}>
-      <h2>Standard-Medikation hinzufügen</h2>
-      <StandardMedicationForm />
-    </div>
-  );
+  <div>
+    <StandardMedicationForm />
+  </div>
+)
 
-export default StandardMedicationScreen;
+export default StandardMedicationScreen
