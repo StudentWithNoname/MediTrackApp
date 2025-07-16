@@ -1,43 +1,42 @@
 import React from 'react'
-
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import Home from './Pages/Home'
+import OnboardingContainer from './Containers/OnboardingContainer'
+import { OnboardingProvider } from './Context/OnboardingContext'
 
-import { CssBaseline } from '@mui/material'
+console.log('✅ App.jsx wird geladen')
 
-import { createTheme, ThemeProvider } from '@mui/material/styles'
+function App() {
+  return (
+    <OnboardingProvider>
+      <HashRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                {console.log('🏠 Route / wird angezeigt')}
+                <Home />
+              </>
+            }
+          />
+          <Route
+            path="/onboarding"
+            element={
+              <>
+                {console.log('🧭 Route /onboarding wird angezeigt')}
+                <OnboardingContainer />
+              </>
+            }
+          />
+        </Routes>
+      </HashRouter>
+    </OnboardingProvider>
+  )
+}
 
-import AppLayout from './AppLayout'
-
-const theme = createTheme({
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: defaultTheme => ({
-        html: {
-          width: '100%',
-          height: '100%'
-        },
-        body: {
-          width: '100%',
-          height: '100%',
-          background: defaultTheme.palette.grey[200]
-        },
-        '#app': {
-          width: '100%',
-          height: '100%'
-        }
-      })
-    }
-  }
-})
-
+// ⬇️ ⬇️ ⬇️ Das hier war bisher nicht vorhanden – und ist entscheidend!
 const container = document.getElementById('app')
 const root = createRoot(container)
-root.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <Router>
-      <AppLayout />
-    </Router>
-  </ThemeProvider>
-)
+root.render(<App />)
