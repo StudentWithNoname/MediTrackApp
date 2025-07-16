@@ -10,7 +10,12 @@ import Error404 from './Pages/Error404'
 
 // ➕ Meditrack-Pages
 import Onboarding from './Pages/Onboarding'
+// Kombinierte Lösung
+import StandardMedicationScreen from './Pages/StandardMedicationScreen'
+import ExtraMedicationScreen from './Pages/ExtraMedicationScreen'
+import StandardMedicationListScreen from './Pages/StandardMedicationListScreen'
 import MedicationIntakeReminder from './Components/MedicationIntakeReminder'
+
 
 const AppRoutes = () => (
   <Routes>
@@ -36,7 +41,9 @@ const AppRoutes = () => (
 
     {/* ➕ Neue Meditrack-Routen */}
     <Route path="/onboarding" element={<Onboarding />} />
-
+    <Route path="/extra-medication" element={<ExtraMedicationScreen />} />
+    <Route path="/standard-medication" element={<StandardMedicationScreen />} />
+    <Route path="/standard-medication/list" element={<StandardMedicationListScreen />} />
     {/* Fallback für nicht gefundene Routen */}
     <Route path="*" element={<Error404 />} />
   </Routes>

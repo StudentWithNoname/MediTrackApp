@@ -8,17 +8,18 @@ import {
   Container,
   Paper,
   BottomNavigation,
-  BottomNavigationAction
+  BottomNavigationAction,
+  Box
 } from '@mui/material'
 
 import {
   HealthAndSafety as HomeIcon,
   Pets as CatIcon,
-  Person4 as ProfileIcon
+  Person4 as ProfileIcon,
+  Medication as MedicationIcon
 } from '@mui/icons-material'
 
 import AppRoutes from './AppRoutes'
-
 import AppLogo from '../assets/favicon.svg'
 
 const borderRadius = 6
@@ -29,7 +30,8 @@ const AppLayout = () => {
 
   let navigationIndex = 0
   if (location.pathname.startsWith('/catnames')) navigationIndex = 1
-  if (location.pathname.startsWith('/profile')) navigationIndex = 2
+  else if (location.pathname.startsWith('/profile')) navigationIndex = 2
+  else if (location.pathname.startsWith('/standard-medication')) navigationIndex = 3
 
   return (
     <Stack
@@ -95,7 +97,9 @@ const AppLayout = () => {
               background: theme => theme.palette.background.paper
             }}
           >
-            <AppRoutes />
+            <Box sx={{ flex: 1, width: '100%' }}>
+              <AppRoutes />
+            </Box>
             <BottomNavigation
               showLabels
               value={navigationIndex}
@@ -115,6 +119,11 @@ const AppLayout = () => {
                 label="Profile"
                 icon={<ProfileIcon />}
                 onClick={() => navigate('/profile')}
+              />
+              <BottomNavigationAction
+                label="Standard"
+                icon={<MedicationIcon />}
+                onClick={() => navigate('/standard-medication')}
               />
             </BottomNavigation>
           </Stack>
