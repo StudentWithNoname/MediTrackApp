@@ -43,4 +43,6 @@ test-reports/
 .git/
 
 # Optional: Lockfile ignorieren, wenn du nicht `yarn.lock` **und** `package-lock.json` verwenden willst
-# package-lock.json
+package-lock.json
+package.json
+yarn.lock
