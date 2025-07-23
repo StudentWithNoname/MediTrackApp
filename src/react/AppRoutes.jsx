@@ -15,6 +15,7 @@ import MedicationIntakeReminder from './Components/MedicationIntakeReminder' // 
 import Error404 from './Pages/Error404'
 import StandardMedicationDetailScreen from './Pages/StandardMedicationDetailScreen'
 import MedicationHistory from './Components/MedicationHistory'
+import MedicationStats from './Components/MedicationStats'
 
 const AppRoutes = () => (
   <Routes>
@@ -32,6 +33,7 @@ const AppRoutes = () => (
     <Route path="*" element={<Error404 />} />
     <Route path="/standard-medication/:id" element={<StandardMedicationDetailScreen />} />
     <Route path="/medication-history" element={<MedicationHistory />} />
+    <Route path="/medication-stats" element={<MedicationStats />} />
   </Routes>
 )
 

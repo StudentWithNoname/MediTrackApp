@@ -14,10 +14,11 @@ import {
   Divider
 } from '@mui/material'
 import MedicationIntakeReminder from '../Components/MedicationIntakeReminder'
+import MedicationChartLight from '../Components/MedicationChartLight'
+import MedicationStats from '../Components/MedicationStats'
 
 const Dashboard = () => {
   const { userData } = useOnboarding()
-  console.log('userData:', userData)
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
@@ -54,20 +55,20 @@ const Dashboard = () => {
             <CardContent>
               <Typography variant="h6">💊 Standard-Medikationen</Typography>
               <List>
-  {(userData.medications || []).map((med, i) => (
-    <ListItem key={med.id || i}>
-      <ListItemText
-        primary={`${med.name} – ${med.dosage}`}
-        secondary={`${med.frequency || '–'}× täglich`}
-      />
-    </ListItem>
-  ))}
-  {(!userData.medications || userData.medications.length === 0) && (
-    <Typography color="text.secondary" sx={{ mt: 2 }}>
-      Keine Medikation eingetragen.
-    </Typography>
-  )}
-</List>
+                {(userData.medications || []).map((med, i) => (
+                  <ListItem key={med.id || i}>
+                    <ListItemText
+                      primary={`${med.name} – ${med.dosage}`}
+                      secondary={`${med.frequency || '–'}× täglich`}
+                    />
+                  </ListItem>
+                ))}
+                {(!userData.medications || userData.medications.length === 0) && (
+                  <Typography color="text.secondary" sx={{ mt: 2 }}>
+                    Keine Medikation eingetragen.
+                  </Typography>
+                )}
+              </List>
 
               <Divider sx={{ mt: 2 }} />
               <Button
@@ -88,6 +89,26 @@ const Dashboard = () => {
             <CardContent>
               <Typography variant="h6">🔔 Erinnerung</Typography>
               <MedicationIntakeReminder delay={8000} snooze={5000} />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Statistik */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">📋 Einnahmestatistik</Typography>
+              <MedicationStats />
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Einnahmeverlauf */}
+        <Grid item xs={12} md={6}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">📊 Einnahmeverlauf</Typography>
+              <MedicationChartLight />
             </CardContent>
           </Card>
         </Grid>
