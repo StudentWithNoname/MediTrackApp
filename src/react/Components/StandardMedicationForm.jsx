@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Button,
@@ -12,6 +11,8 @@ import {
   Snackbar,
   Alert
 } from '@mui/material'
+
+import { useOnboarding } from '../Context/OnboardingContext'
 
 const standardMedicationOptions = [
   { name: 'Ramipril', dosage: '5mg' },
@@ -98,7 +99,9 @@ const StandardMedicationForm = () => {
           >
             {standardMedicationOptions.map((med) => (
               <MenuItem key={med.name} value={med.name}>
-                {med.name} – {med.dosage}
+                {med.name}
+                –
+                {med.dosage}
               </MenuItem>
             ))}
           </Select>

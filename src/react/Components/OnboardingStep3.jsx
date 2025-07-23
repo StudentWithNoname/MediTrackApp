@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Typography,
   FormGroup,
@@ -10,6 +8,9 @@ import {
   Container,
   Box
 } from '@mui/material'
+
+import PropTypes from 'prop-types'
+import { useOnboarding } from '../Context/OnboardingContext'
 
 const goalsOptions = [
   'Medikamente regelmäßig nehmen',
@@ -23,11 +24,12 @@ const OnboardingStep3 = ({ onNext, onBack }) => {
   const [selectedGoals, setSelectedGoals] = useState(userData.goals || [])
 
   const toggleGoal = (goal) => {
-    setSelectedGoals((prev) =>
-      prev.includes(goal)
-        ? prev.filter((g) => g !== goal)
-        : [...prev, goal]
-    )
+    setSelectedGoals((prev) => {
+      if (prev.includes(goal)) {
+        return prev.filter((g) => g !== goal)
+      }
+      return [...prev, goal]
+    })
   }
 
   const handleSubmit = () => {
