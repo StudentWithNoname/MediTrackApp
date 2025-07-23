@@ -1,16 +1,23 @@
-# 💊 Meditrack
+# 💊 MediTrack
 
-**Meditrack** ist eine moderne Webanwendung zur Unterstützung der täglichen Medikamenteneinnahme. Ziel ist es, Nutzer:innen durch ein benutzerfreundliches, sicheres und erweiterbares System zu begleiten – von der Ersterfassung bis zur Erinnerung.
+**MediTrack** ist eine moderne Webanwendung zur Unterstützung bei der täglichen Medikamenteneinnahme – mit intelligenten Erinnerungen, einer visualisierten Einnahmehistorie und einem übersichtlichen Dashboard für alle Altersgruppen.
 
 ---
 
 ## ✨ Funktionen
 
-- ✅ Onboarding-Flow für neue Nutzer:innen
-- 📅 Übersicht geplanter Medikationen *(in Arbeit)*
-- 🔔 Erinnerungssystem *(in Vorbereitung)*
-- 🎨 React + Webpack-Architektur
+- ✅ Onboarding-Flow mit benutzerfreundlichem Setup
+- 🧠 Medikamenten-Erinnerungen mit Historien-Erfassung
+- 📋 Einnahmestatistik pro Medikament
+- 📊 Einnahmeverlauf als Tagesübersicht
+- 🔍 Filterbare Historie (nach Datum und Aktion)
+- 🌗 Darkmode-Unterstützung für angenehmes Lesen
+- 🎨 Material UI + React Architektur
 - 🛡️ Fokus auf Datenschutz und Erweiterbarkeit
+
+---
+
+## Platzhalter
 
 ---
 
@@ -18,17 +25,7 @@
 
 ```bash
 git clone https://github.com/StudentWithNoname/MediTrackApp.git
-cd MeditrackApp
+cd MediTrackApp
 yarn install
 yarn start:dev
 
-
-meditrack-app/
-├── build/               # Bundled Output
-├── public/              # Static Assets
-├── src/                 # Source Code
-│   ├── react/           # Komponenten & Routen
-│   ├── assets/          
-│   └── ...
-├── webpack.config.js    # Build-Konfiguration
-└── .env                 # Umgebungsvariablen
