@@ -12,6 +12,7 @@ import ProfileOverview from './Pages/Profile/ProfileOverview'
 import ProfileSettings from './Pages/Profile/ProfileSettings'
 import Dashboard from './Pages/Dashboard'
 import MedicationIntakeReminder from './Components/MedicationIntakeReminder' // korrekt als Komponente
+import ExportMedicationOverview from './Components/ExportMedicationOverview'
 import Error404 from './Pages/Error404'
 import StandardMedicationDetailScreen from './Pages/StandardMedicationDetailScreen'
 
@@ -20,6 +21,7 @@ const AppRoutes = () => (
     <Route path="/" element={<Home />} />
     <Route path="/onboarding" element={<Onboarding />} />
     <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="/dashboard/overview" element={<ExportMedicationOverview />} />
     <Route path="/standard-medication" element={<StandardMedicationListScreen />} />
     <Route path="/standard-medication/:id" element={<StandardMedicationScreen />} />
     {/*  /extra-medication entfernt */}

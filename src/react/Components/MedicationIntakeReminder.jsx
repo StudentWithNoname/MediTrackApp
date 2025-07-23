@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
+import PropTypes from 'prop-types'
 import {
   Dialog,
   DialogTitle,
@@ -13,10 +14,10 @@ const MedicationIntakeReminder = ({ delay = 10000, snooze = 5000 }) => {
   const { userData } = useOnboarding()
   const [open, setOpen] = useState(false)
   const [dismissed, setDismissed] = useState(false)
-  const timerRef = useRef(null)
+  const timerRef = useRef(undefined)
 
   const medications = userData.medications || []
-  const med = medications.length > 0 ? medications[0] : null
+  const med = medications.length > 0 ? medications[0] : undefined
 
   const scheduleReminder = (customDelay) => {
     if (timerRef.current) clearTimeout(timerRef.current)
@@ -47,20 +48,20 @@ const MedicationIntakeReminder = ({ delay = 10000, snooze = 5000 }) => {
     console.log(`snoozed: ${med?.name}`)
   }
 
-  if (!med) return null
+  if (!med) return undefined
 
   return (
     <Dialog open={open} onClose={handleWillNotTake}>
       <DialogTitle>Erinnerung</DialogTitle>
       <DialogContent>
         <Typography>
-          Hast du {med.name} ({med.dosage}) heute schon eingenommen?
+          {`Hast du ${med.name}(${med.dosage}) heute schon eingenommen?`}
         </Typography>
         <Typography variant="body2" sx={{ mt: 1 }}>
-          Frequenz: {med.frequency}× täglich
+          {`Frequenz: ${med.frequency}x täglich`}
         </Typography>
       </DialogContent>
-      <DialogActions>
+      <DialogActions sx={{ justifyContent: 'center', gap: 2 }}>
         <Button onClick={handleConfirm} color="success" variant="contained">
           Ja
         </Button>
@@ -73,6 +74,11 @@ const MedicationIntakeReminder = ({ delay = 10000, snooze = 5000 }) => {
       </DialogActions>
     </Dialog>
   )
+}
+
+MedicationIntakeReminder.propTypes = {
+  delay: PropTypes.number,
+  snooze: PropTypes.number
 }
 
 export default MedicationIntakeReminder
