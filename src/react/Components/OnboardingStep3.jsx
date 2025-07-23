@@ -1,17 +1,28 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useOnboarding } from '../Context/OnboardingContext'
+import {
+  Typography,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+  Button,
+  Container,
+  Box
+} from '@mui/material'
 
-const GOALS = [
-  'Schmerzen reduzieren',
-  'Medikamente regelmäßig einnehmen',
-  'Symptome verfolgen',
-  'Einfach mal ausprobieren'
+const goalsOptions = [
+  'Medikamente regelmäßig nehmen',
+  'Besserer Überblick über Medikation',
+  'Erinnerungen erhalten',
+  'Daten mit Arzt teilen'
 ]
 
-const OnboardingStep3 = ({ onBack, onNext }) => {
-  const [selectedGoals, setSelectedGoals] = useState([])
+const OnboardingStep3 = ({ onNext, onBack }) => {
+  const { userData, setUserData } = useOnboarding()
+  const [selectedGoals, setSelectedGoals] = useState(userData.goals || [])
 
-  const handleToggle = (goal) => {
+  const toggleGoal = (goal) => {
     setSelectedGoals((prev) =>
       prev.includes(goal)
         ? prev.filter((g) => g !== goal)
@@ -20,42 +31,52 @@ const OnboardingStep3 = ({ onBack, onNext }) => {
   }
 
   const handleSubmit = () => {
-    if (selectedGoals.length > 0) onNext()
+    setUserData((prev) => ({
+      ...prev,
+      goals: selectedGoals
+    }))
+    onNext()
   }
 
   return (
-    <div>
-      <h2>🎯 Was möchtest du mit Meditrack erreichen?</h2>
-
-      <ul>
-        {GOALS.map((goal, index) => (
-          <li key={goal}>
-            <input
-              id={`goal-${index}`}
-              type="checkbox"
-              checked={selectedGoals.includes(goal)}
-              onChange={() => handleToggle(goal)}
-            />
-            <label htmlFor={`goal-${index}`}>{goal}</label>
-          </li>
+    <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Typography variant="h5" gutterBottom>
+        🎯 Was sind deine Ziele?
+      </Typography>
+      <FormGroup>
+        {goalsOptions.map((goal) => (
+          <FormControlLabel
+            key={goal}
+            control={
+              <Checkbox
+                checked={selectedGoals.includes(goal)}
+                onChange={() => toggleGoal(goal)}
+              />
+            }
+            label={goal}
+          />
         ))}
-      </ul>
+      </FormGroup>
 
-      {selectedGoals.length === 0 && (
-        <p style={{ color: 'red' }}>Bitte wähle mindestens ein Ziel aus</p>
-      )}
-
-      <button onClick={onBack}>← Zurück</button>
-      <button onClick={handleSubmit} disabled={selectedGoals.length === 0}>
-        Weiter →
-      </button>
-    </div>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+        <Button variant="outlined" onClick={onBack}>
+          ← Zurück
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          disabled={selectedGoals.length === 0}
+        >
+          Abschließen →
+        </Button>
+      </Box>
+    </Container>
   )
 }
 
 OnboardingStep3.propTypes = {
-  onBack: PropTypes.func.isRequired,
-  onNext: PropTypes.func.isRequired
+  onNext: PropTypes.func.isRequired,
+  onBack: PropTypes.func.isRequired
 }
 
 export default OnboardingStep3

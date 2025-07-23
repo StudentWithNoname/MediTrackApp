@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Typography,
@@ -11,30 +12,19 @@ import {
 } from '@mui/material'
 
 const StandardMedicationListScreen = () => {
-  const [medications, setMedications] = useState([])
+const { userData, setUserData } = useOnboarding()
+console.log('StandardMedicationListScreen → userData:', userData)
+const medications = userData.medications || []
 
-  useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem('standardMedications')) || []
-    setMedications(stored)
-  }, [])
 
   const handleClearAll = () => {
-    localStorage.removeItem('standardMedications')
-    setMedications([])
+    setUserData((prev) => ({ ...prev, medications: [] }))
   }
 
   return (
-    <Box sx={{
-      padding: 4,
-      maxWidth: {
-        xs: '90%',
-        sm: 600
-      },
-      margin: '0 auto'
-    }}
-    >
+    <Box sx={{ padding: 4, maxWidth: { xs: '90%', sm: 600 }, margin: '0 auto' }}>
       <Typography variant="h5" gutterBottom>
-        Gespeicherte Standard-Medikationen
+        Gespeicherte Medikamente
       </Typography>
 
       {medications.length === 0 ? (
@@ -43,11 +33,11 @@ const StandardMedicationListScreen = () => {
         <Paper elevation={3}>
           <List>
             {medications.map((med, index) => (
-              <React.Fragment key={med.id || `${med.name}-${index}`}>
+              <React.Fragment key={med.id || index}>
                 <ListItem>
                   <ListItemText
                     primary={`${med.name} – ${med.dosage}`}
-                    secondary={`${med.frequency}× täglich`}
+                    secondary={`${med.frequency || '–'}× täglich`}
                   />
                 </ListItem>
                 {index < medications.length - 1 && <Divider />}
@@ -59,11 +49,7 @@ const StandardMedicationListScreen = () => {
 
       {medications.length > 0 && (
         <Box sx={{ textAlign: 'center', marginTop: 3 }}>
-          <Button
-            variant="outlined"
-            color="error"
-            onClick={handleClearAll}
-          >
+          <Button variant="outlined" color="error" onClick={handleClearAll}>
             Alle löschen
           </Button>
         </Box>

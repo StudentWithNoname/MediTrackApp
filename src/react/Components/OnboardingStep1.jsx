@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useOnboarding } from '../Context/OnboardingContext'
+import { TextField, Button, Typography, Box } from '@mui/material'
 
 const OnboardingStep1 = ({ onNext }) => {
   const { userData, setUserData } = useOnboarding()
   const [touched, setTouched] = useState({ name: false, age: false })
-
-  // ⬇️ Logging zur Prüfung, ob Context verfügbar ist
-  console.log('[Step1] userData:', userData)
 
   const isValid = userData.name.trim() !== '' && userData.age.trim() !== ''
 
@@ -22,39 +20,40 @@ const OnboardingStep1 = ({ onNext }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>👋 Willkommen bei Meditrack</h2>
+    <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
+      <Typography variant="h5" gutterBottom>
+        👋 Willkommen bei Meditrack
+      </Typography>
 
-      <label htmlFor="name">Name *</label>
-      <input
-        id="name"
+      <TextField
+        label="Name *"
         name="name"
-        type="text"
+        fullWidth
+        margin="normal"
         value={userData.name}
         onChange={handleChange}
         onBlur={() => setTouched((t) => ({ ...t, name: true }))}
+        error={touched.name && userData.name.trim() === ''}
+        helperText={touched.name && userData.name.trim() === '' ? 'Bitte gib deinen Namen ein' : ''}
       />
-      {touched.name && userData.name.trim() === '' && (
-        <p style={{ color: 'red' }}>Bitte gib deinen Namen ein</p>
-      )}
 
-      <label htmlFor="age">Alter *</label>
-      <input
-        id="age"
+      <TextField
+        label="Alter *"
         name="age"
         type="number"
+        fullWidth
+        margin="normal"
         value={userData.age}
         onChange={handleChange}
         onBlur={() => setTouched((t) => ({ ...t, age: true }))}
+        error={touched.age && userData.age.trim() === ''}
+        helperText={touched.age && userData.age.trim() === '' ? 'Bitte gib dein Alter ein' : ''}
       />
-      {touched.age && userData.age.trim() === '' && (
-        <p style={{ color: 'red' }}>Bitte gib dein Alter ein</p>
-      )}
 
-      <button type="submit" disabled={!isValid}>
+      <Button variant="contained" type="submit" fullWidth disabled={!isValid} sx={{ mt: 2 }}>
         Weiter →
-      </button>
-    </form>
+      </Button>
+    </Box>
   )
 }
 

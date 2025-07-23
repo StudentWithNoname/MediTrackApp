@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Button,
@@ -26,10 +27,11 @@ const standardMedicationOptions = [
 ]
 
 const StandardMedicationForm = () => {
+  const { userData, setUserData } = useOnboarding()
   const [selectedMedication, setSelectedMedication] = useState('')
   const [frequency, setFrequency] = useState('')
   const [message, setMessage] = useState('')
-  const [alertType, setAlertType] = useState('success') // 'success' or 'error'
+  const [alertType, setAlertType] = useState('success')
   const [open, setOpen] = useState(false)
 
   const handleClose = () => setOpen(false)
@@ -40,9 +42,9 @@ const StandardMedicationForm = () => {
     const med = standardMedicationOptions.find((m) => m.name === selectedMedication)
     if (!med || !frequency) return
 
-    const stored = JSON.parse(localStorage.getItem('standardMedications')) || []
-
+    const stored = userData.standardMedications || []
     const exists = stored.some((m) => m.name === med.name)
+
     if (exists) {
       setMessage(`${med.name} ist bereits gespeichert.`)
       setAlertType('error')
@@ -57,10 +59,12 @@ const StandardMedicationForm = () => {
       frequency
     }
 
-    stored.push(entry)
-    localStorage.setItem('standardMedications', JSON.stringify(stored))
+    setUserData((prev) => ({
+      ...prev,
+      medications: [...(prev.medications || []), entry]
+    }))
 
-    setMessage('Standard-Medikation erfolgreich gespeichert.')
+    setMessage('Medikation erfolgreich gespeichert.')
     setAlertType('success')
     setOpen(true)
 
@@ -77,22 +81,13 @@ const StandardMedicationForm = () => {
           display: 'flex',
           flexDirection: 'column',
           gap: 2,
-          maxWidth: {
-            xs: '90%',
-            sm: '400px'
-          },
-          paddingTop: {
-            xs: '2rem',
-            sm: '3rem',
-            md: '4rem'
-          },
+          maxWidth: { xs: '90%', sm: '400px' },
+          paddingTop: { xs: '2rem', sm: '3rem', md: '4rem' },
           paddingX: 2,
           marginX: 'auto'
         }}
       >
-        <Typography variant="h6">
-          Standard-Medikation hinzufügen
-        </Typography>
+        <Typography variant="h6">Standard-Medikation hinzufügen</Typography>
 
         <FormControl fullWidth required>
           <InputLabel>Medikament</InputLabel>
@@ -103,9 +98,7 @@ const StandardMedicationForm = () => {
           >
             {standardMedicationOptions.map((med) => (
               <MenuItem key={med.name} value={med.name}>
-                <span>{med.name}</span>
-                {' – '}
-                <span>{med.dosage}</span>
+                {med.name} – {med.dosage}
               </MenuItem>
             ))}
           </Select>
@@ -121,7 +114,7 @@ const StandardMedicationForm = () => {
           fullWidth
         />
 
-        <Button variant="contained" color="primary" type="submit">
+        <Button variant="contained" type="submit">
           Speichern
         </Button>
       </Box>

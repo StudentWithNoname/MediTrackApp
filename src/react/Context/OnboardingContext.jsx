@@ -1,26 +1,34 @@
-import React, { createContext, useContext, useState, useMemo } from 'react'
-import PropTypes from 'prop-types'
+import React, { createContext, useContext, useState, useEffect } from 'react'
 
+// 1️⃣ Context erzeugen
 const OnboardingContext = createContext()
 
+// 2️⃣ Provider-Komponente
 export const OnboardingProvider = ({ children }) => {
-  const [userData, setUserData] = useState({
-    name: '',
-    age: '',
-    medications: []
+  // Daten aus localStorage laden, falls vorhanden
+  const [userData, setUserData] = useState(() => {
+    const stored = localStorage.getItem('userData')
+    return stored
+      ? JSON.parse(stored)
+      : {
+          name: '',
+          age: '',
+          medications: [],
+          goals: []
+        }
   })
 
-  const value = useMemo(() => ({ userData, setUserData }), [userData])
+  // bei jeder Änderung automatisch speichern
+  useEffect(() => {
+    localStorage.setItem('userData', JSON.stringify(userData))
+  }, [userData])
 
   return (
-    <OnboardingContext.Provider value={value}>
+    <OnboardingContext.Provider value={{ userData, setUserData }}>
       {children}
     </OnboardingContext.Provider>
   )
 }
 
-OnboardingProvider.propTypes = {
-  children: PropTypes.node.isRequired
-}
-
+// 3️⃣ Custom Hook zum Verwenden
 export const useOnboarding = () => useContext(OnboardingContext)

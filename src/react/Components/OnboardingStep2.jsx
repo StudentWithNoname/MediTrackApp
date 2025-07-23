@@ -1,62 +1,70 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
+import React from 'react'
 import { useOnboarding } from '../Context/OnboardingContext'
+import StandardMedicationForm from '../Components/StandardMedicationForm'
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+  Alert
+} from '@mui/material'
 
 const OnboardingStep2 = ({ onBack, onNext }) => {
-  const { userData, setUserData } = useOnboarding()
-  const [medication, setMedication] = useState({ name: '', dosage: '' })
+  const { userData } = useOnboarding()
 
-  const handleAdd = () => {
-    if (medication.name.trim() !== '') {
-      const newEntry = {
-        name: medication.name.trim(),
-        dosage: medication.dosage.trim()
-      }
-      setUserData((prev) => ({
-        ...prev,
-        medications: [...(prev.medications || []), newEntry]
-      }))
-      setMedication({ name: '', dosage: '' })
-    }
-  }
+  const canProceed = userData.medications && userData.medications.length > 0
 
   return (
-    <div>
-      <h2>💊 Medikamente hinzufügen</h2>
+    <Box sx={{ padding: 4, maxWidth: 600, margin: '0 auto' }}>
+      <Typography variant="h5" gutterBottom>
+        🩺 Schritt 2: Deine Medikation
+      </Typography>
 
-      <label htmlFor="medName">Medikament *</label>
-      <input
-        id="medName"
-        value={medication.name}
-        onChange={(e) => setMedication({ ...medication, name: e.target.value })}
-      />
+      <Typography variant="body1" sx={{ mb: 3 }}>
+        Wähle Medikamente aus unserer Liste. Du kannst später weitere hinzufügen.
+      </Typography>
 
-      <label htmlFor="dosage">Dosierung</label>
-      <input
-        id="dosage"
-        value={medication.dosage}
-        onChange={(e) => setMedication({ ...medication, dosage: e.target.value })}
-      />
+      {/* Formular zur Auswahl */}
+      <StandardMedicationForm />
 
-      <button type="button" onClick={handleAdd}>Hinzufügen</button>
+      {/* Liste der gewählten Medikamente */}
+      {canProceed ? (
+        <Box sx={{ mt: 4 }}>
+          <Typography variant="h6" gutterBottom> Ausgewählt:</Typography>
+          <List>
+            {userData.medications.map((med) => (
+              <ListItem key={med.id}>
+                <ListItemText
+                  primary={`${med.name} – ${med.dosage}`}
+                  secondary={`${med.frequency}× täglich`}
+                />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      ) : (
+        <Alert severity="info" sx={{ mt: 4 }}>
+          Du hast noch keine Medikamente ausgewählt.
+        </Alert>
+      )}
 
-      <ul>
-        {(userData.medications || []).map((m, i) => (
-          <li key={`${m.name}-${i}`}>
-            {m.name} ({m.dosage})
-          </li>
-        ))}
-      </ul>
-
-      <button onClick={onBack}>← Zurück</button>
-      <button onClick={onNext} disabled={!userData.medications?.length}>Weiter →</button>
-    </div>
+      {/*  Navigation */}
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
+        <Button variant="outlined" onClick={onBack}>
+          Zurück
+        </Button>
+        <Button
+          variant="contained"
+          onClick={onNext}
+          disabled={!canProceed}
+        >
+          Weiter
+        </Button>
+      </Box>
+    </Box>
   )
-}
-
-OnboardingStep2.propTypes = {
-  onBack: PropTypes.func.isRequired,
-  onNext: PropTypes.func.isRequired
 }
 
 export default OnboardingStep2
