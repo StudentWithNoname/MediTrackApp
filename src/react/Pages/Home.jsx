@@ -45,6 +45,13 @@ const Home = () => (
           </ListItem>
 
           <ListItem disablePadding>
+            <ListItemButton component={Link} to="/medication-history">
+              <ListItemIcon><MedicationIcon /></ListItemIcon>
+              <ListItemText primary=" Medikamentenhistorie" />
+            </ListItemButton>
+          </ListItem>
+
+          <ListItem disablePadding>
             <ListItemButton component={Link} to="/profile">
               <ListItemIcon><AccountCircleIcon /></ListItemIcon>
               <ListItemText primary=" Profil" />

@@ -14,6 +14,7 @@ import Dashboard from './Pages/Dashboard'
 import MedicationIntakeReminder from './Components/MedicationIntakeReminder' // korrekt als Komponente
 import Error404 from './Pages/Error404'
 import StandardMedicationDetailScreen from './Pages/StandardMedicationDetailScreen'
+import MedicationHistory from './Components/MedicationHistory'
 
 const AppRoutes = () => (
   <Routes>
@@ -30,6 +31,7 @@ const AppRoutes = () => (
     {/*  reminder bleibt nur */}
     <Route path="*" element={<Error404 />} />
     <Route path="/standard-medication/:id" element={<StandardMedicationDetailScreen />} />
+    <Route path="/medication-history" element={<MedicationHistory />} />
   </Routes>
 )
 
