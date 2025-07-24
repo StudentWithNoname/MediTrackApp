@@ -1,5 +1,4 @@
 import React from 'react'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Typography,
@@ -11,11 +10,12 @@ import {
   Paper
 } from '@mui/material'
 
-const StandardMedicationListScreen = () => {
-const { userData, setUserData } = useOnboarding()
-console.log('StandardMedicationListScreen → userData:', userData)
-const medications = userData.medications || []
+import { useOnboarding } from '../Context/OnboardingContext'
 
+const StandardMedicationListScreen = () => {
+  const { userData, setUserData } = useOnboarding()
+  console.log('StandardMedicationListScreen → userData:', userData)
+  const medications = userData.medications || []
 
   const handleClearAll = () => {
     setUserData((prev) => ({ ...prev, medications: [] }))

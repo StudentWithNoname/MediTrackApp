@@ -1,0 +1,402 @@
+[
+  {
+    "drug1": "Ramipril",
+    "drug2": "Ibuprofen",
+    "severity": "Moderate",
+    "mechanism_de": "Ibuprofen kann die blutdrucksenkende Wirkung von Ramipril abschwächen und die Nierenfunktion beeinträchtigen.",
+    "management_de": "Blutdruck und Nierenfunktion regelmäßig überwachen. Kombination möglichst vermeiden oder nur kurzfristig einsetzen.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2057-0,1310-0"
+  },
+  {
+    "drug1": "Ramipril",
+    "drug2": "Paracetamol",
+    "severity": "Minor",
+    "mechanism_de": "Paracetamol kann in seltenen Fällen die Wirkung von Ramipril leicht beeinflussen, insbesondere bei langfristiger Einnahme.",
+    "management_de": "Kurzzeitige Anwendung ist in der Regel unproblematisch. Bei chronischer Nutzung Leberwerte und Blutdruck kontrollieren.",
+    "quelle": "https://pubmed.ncbi.nlm.nih.gov/23883161/"
+  },
+  {
+    "drug1": "Ramipril",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Aspirin kann bei hoher Dosierung die Wirkung von ACE-Hemmern beeinträchtigen und das Risiko für Nierenschäden erhöhen.",
+    "management_de": "Low-dose (≤100 mg) meist unbedenklich. Nierenfunktion regelmäßig prüfen bei langfristiger Kombination.",
+    "quelle": "https://www.nhs.uk/medicines/ramipril/taking-ramipril-with-other-medicines-and-herbal-supplements/"
+  },
+  {
+    "drug1": "Ramipril",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine klinisch relevante pharmakologische Interaktion bekannt.",
+    "management_de": "Die Kombination ist in der Regel unbedenklich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2057-0,568-0"
+  },
+  {
+    "drug1": "Ramipril",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "Diclofenac kann die Wirkung von Ramipril abschwächen und das Risiko für Nierenschäden erhöhen.",
+    "management_de": "Kombination möglichst vermeiden oder engmaschig kontrollieren. Nierenfunktion regelmäßig prüfen.",
+    "quelle": "https://www.medscape.com/druginfo/ramipril"
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Ibuprofen",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs wie Ibuprofen können bei gleichzeitiger Einnahme mit Metformin das Risiko einer Laktatazidose erhöhen, besonders bei eingeschränkter Nierenfunktion.",
+    "management_de": "Nierenfunktion überwachen. Vorsicht bei älteren Patienten oder bei Dehydrierung.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1610-0,1310-0"
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine signifikante pharmakologische Interaktion bekannt.",
+    "management_de": "Die gleichzeitige Einnahme ist sicher bei üblicher Dosierung.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1610-0,1039-0"
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Aspirin kann in hoher Dosierung das Risiko für Magenblutungen erhöhen, besonders bei gleichzeitiger Metformin-Einnahme mit gastrointestinaler Belastung.",
+    "management_de": "Bei hoher Aspirin-Dosis auf gastrointestinale Nebenwirkungen achten. PPI-Schutz bei Bedarf.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7581123/"
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine Wechselwirkung bekannt.",
+    "management_de": "Die Kombination ist unproblematisch.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1610-0,568-0"
+  },
+  {
+    "drug1": "Metformin",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs können die renale Clearance von Metformin beeinträchtigen und das Risiko einer Laktatazidose erhöhen.",
+    "management_de": "Regelmäßige Überprüfung der Nierenfunktion, besonders bei älteren oder vorerkrankten Personen.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1610-0,709-0"
+  },
+  {
+    "drug1": "L-Thyroxin",
+    "drug2": "Ibuprofen",
+    "severity": "None",
+    "mechanism_de": "Keine direkte pharmakologische Interaktion bekannt.",
+    "management_de": "Kombination ist in der Regel unproblematisch.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=148-0,1310-0"
+  },
+  {
+    "drug1": "L-Thyroxin",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine Wechselwirkung dokumentiert.",
+    "management_de": "Kann sicher kombiniert werden.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=148-0,1039-0"
+  },
+  {
+    "drug1": "L-Thyroxin",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Aspirin kann die Plasmaproteinbindung von Schilddrüsenhormon stören, insbesondere bei hohen Dosen.",
+    "management_de": "Vorsicht bei langfristiger Hochdosisgabe, aber in niedriger Dosis (z. B. 100 mg) meist unbedenklich.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6791021/"
+  },
+  {
+    "drug1": "L-Thyroxin",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine dokumentierte Interaktion.",
+    "management_de": "Einnahme problemlos möglich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=148-0,568-0"
+  },
+  {
+    "drug1": "L-Thyroxin",
+    "drug2": "Diclofenac",
+    "severity": "None",
+    "mechanism_de": "Keine klinisch relevante Interaktion bekannt.",
+    "management_de": "Kann gemeinsam eingenommen werden.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=148-0,709-0"
+  },
+  {
+    "drug1": "Amlodipin",
+    "drug2": "Ibuprofen",
+    "severity": "Moderate",
+    "mechanism_de": "Ibuprofen kann die antihypertensive Wirkung von Amlodipin abschwächen.",
+    "management_de": "Blutdruck regelmäßig kontrollieren. Bei längerer Anwendung alternative Analgetika erwägen.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=6986-0,1310-0"
+  },
+  {
+    "drug1": "Amlodipin",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine Wechselwirkung bekannt.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=6986-0,1039-0"
+  },
+  {
+    "drug1": "Amlodipin",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "In Kombination besteht ein geringes Risiko für gastrointestinale Nebenwirkungen.",
+    "management_de": "Magenschutz erwägen bei langfristiger Einnahme oder höheren Dosen.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3441245/"
+  },
+  {
+    "drug1": "Amlodipin",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine Interaktion dokumentiert.",
+    "management_de": "Unbedenklich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=6986-0,568-0"
+  },
+  {
+    "drug1": "Amlodipin",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs wie Diclofenac können den blutdrucksenkenden Effekt von Amlodipin abschwächen.",
+    "management_de": "Regelmäßige Blutdruckkontrolle bei kombinierter Anwendung.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=6986-0,709-0"
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Ibuprofen",
+    "severity": "Minor",
+    "mechanism_de": "Ibuprofen beeinflusst den Metabolismus von Simvastatin nicht signifikant.",
+    "management_de": "Kombination ist in üblicher Dosierung unbedenklich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2056-0,1310-0"
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine bekannte pharmakologische Interaktion.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2056-0,1039-0"
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Geringes Risiko für Muskelschmerzen bei gleichzeitiger Einnahme.",
+    "management_de": "Beobachten auf Myalgie. Kombination in niedriger Dosis meist unbedenklich.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947368/"
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine Interaktion dokumentiert.",
+    "management_de": "Kombination ist problemlos möglich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2056-0,568-0"
+  },
+  {
+    "drug1": "Simvastatin",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "Diclofenac kann über Lebermetabolismus die Plasmaspiegel von Simvastatin beeinflussen.",
+    "management_de": "Auf Anzeichen von Muskelschmerzen oder Leberfunktionsstörung achten.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2056-0,709-0"
+  },
+  {
+    "drug1": "Pantoprazol",
+    "drug2": "Ibuprofen",
+    "severity": "Minor",
+    "mechanism_de": "Pantoprazol schützt die Magenschleimhaut bei gleichzeitiger NSAID-Gabe.",
+    "management_de": "Therapeutisch sinnvolle Kombination zur Ulkusprophylaxe.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2857189/"
+  },
+  {
+    "drug1": "Pantoprazol",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine klinisch relevante Interaktion.",
+    "management_de": "Kombination ist unproblematisch.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1039-0,2291-0"
+  },
+  {
+    "drug1": "Pantoprazol",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Pantoprazol reduziert durch Aspirin induzierte Magenreizungen.",
+    "management_de": "Gängige Kombination bei ASS-Therapie.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6597838/"
+  },
+  {
+    "drug1": "Pantoprazol",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine dokumentierte Wechselwirkung.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=2291-0,568-0"
+  },
+  {
+    "drug1": "Pantoprazol",
+    "drug2": "Diclofenac",
+    "severity": "Minor",
+    "mechanism_de": "Pantoprazol wird oft zur Reduktion von NSAID-bedingten Ulzera wie bei Diclofenac eingesetzt.",
+    "management_de": "Therapeutisch sinnvoll bei Langzeit-NSAID-Gabe.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6955908/"
+  },
+  {
+    "drug1": "Bisoprolol",
+    "drug2": "Ibuprofen",
+    "severity": "Moderate",
+    "mechanism_de": "Ibuprofen kann die blutdrucksenkende Wirkung von Betablockern wie Bisoprolol abschwächen.",
+    "management_de": "Blutdruck regelmäßig überwachen.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=307-0,1310-0"
+  },
+  {
+    "drug1": "Bisoprolol",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine Interaktion bekannt.",
+    "management_de": "Sicher kombinierbar.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=307-0,1039-0"
+  },
+  {
+    "drug1": "Bisoprolol",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Aspirin kann in hohen Dosen die blutdrucksenkende Wirkung abschwächen.",
+    "management_de": "Geringe Dosen (100 mg) sind meist unproblematisch.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3441245/"
+  },
+  {
+    "drug1": "Bisoprolol",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine dokumentierte Interaktion.",
+    "management_de": "Sicher kombinierbar.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=307-0,568-0"
+  },
+  {
+    "drug1": "Bisoprolol",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs können die Wirkung von Betablockern abschwächen.",
+    "management_de": "Blutdruck überwachen, besonders bei Langzeitbehandlung.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=307-0,709-0"
+  },
+  {
+    "drug1": "ASS",
+    "drug2": "Ibuprofen",
+    "severity": "Major",
+    "mechanism_de": "Ibuprofen kann die plättchenhemmende Wirkung von ASS beeinträchtigen.",
+    "management_de": "Ibuprofen mindestens 2h nach ASS einnehmen.",
+    "quelle": "https://www.fda.gov/drugs/drug-safety-and-availability/fda-warns-ibuprofen-can-interfere-aspirin"
+  },
+  {
+    "drug1": "ASS",
+    "drug2": "Paracetamol",
+    "severity": "Minor",
+    "mechanism_de": "Keine klinisch relevante Interaktion.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1039-0,241-0"
+  },
+  {
+    "drug1": "ASS",
+    "drug2": "Aspirin",
+    "severity": "Duplicate",
+    "mechanism_de": "Beide Wirkstoffe sind identisch.",
+    "management_de": "Nicht doppelt einnehmen.",
+    "quelle": "https://de.wikipedia.org/wiki/Acetylsalicyls%C3%A4ure"
+  },
+  {
+    "drug1": "ASS",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine Interaktion bekannt.",
+    "management_de": "Sicher kombinierbar.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=241-0,568-0"
+  },
+  {
+    "drug1": "ASS",
+    "drug2": "Diclofenac",
+    "severity": "Major",
+    "mechanism_de": "Additives Risiko für gastrointestinale Blutungen.",
+    "management_de": "Magenschutz oder alternative Kombination erwägen.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2857189/"
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Ibuprofen",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs können das Risiko für Muskelschmerzen leicht erhöhen.",
+    "management_de": "Achten auf Myalgie, besonders bei hohen Statin-Dosen.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3854490/"
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine signifikante Interaktion dokumentiert.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1039-0,125-0"
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Aspirin",
+    "severity": "Minor",
+    "mechanism_de": "Geringes additiver Risiko für Blutungen oder Muskelschmerzen.",
+    "management_de": "Bei Langzeittherapie regelmäßig auf Nebenwirkungen achten.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947368/"
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine Interaktion dokumentiert.",
+    "management_de": "Unbedenkliche Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=125-0,568-0"
+  },
+  {
+    "drug1": "Atorvastatin",
+    "drug2": "Diclofenac",
+    "severity": "Moderate",
+    "mechanism_de": "NSAIDs können bei gleichzeitiger Einnahme mit Statinen das Risiko für Leber- oder Muskelschäden erhöhen.",
+    "management_de": "Regelmäßige Leberwerte prüfen. Myalgie-Symptome beobachten.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2857189/"
+  },
+  {
+    "drug1": "Furosemid",
+    "drug2": "Ibuprofen",
+    "severity": "Major",
+    "mechanism_de": "Ibuprofen kann die diuretische und antihypertensive Wirkung von Furosemid vermindern.",
+    "management_de": "Blutdruck und Flüssigkeitsstatus engmaschig überwachen.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1052-0,1310-0"
+  },
+  {
+    "drug1": "Furosemid",
+    "drug2": "Paracetamol",
+    "severity": "None",
+    "mechanism_de": "Keine bekannte Wechselwirkung.",
+    "management_de": "Sichere Kombination.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1052-0,1039-0"
+  },
+  {
+    "drug1": "Furosemid",
+    "drug2": "Aspirin",
+    "severity": "Moderate",
+    "mechanism_de": "Aspirin kann die Wirkung von Furosemid vermindern und das Risiko für Nierenschäden erhöhen.",
+    "management_de": "Nierenfunktion regelmäßig überprüfen.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6597838/"
+  },
+  {
+    "drug1": "Furosemid",
+    "drug2": "Cetirizin",
+    "severity": "None",
+    "mechanism_de": "Keine dokumentierte Interaktion.",
+    "management_de": "Unbedenklich.",
+    "quelle": "https://www.drugs.com/interactions-check.php?drug_list=1052-0,568-0"
+  },
+  {
+    "drug1": "Furosemid",
+    "drug2": "Diclofenac",
+    "severity": "Major",
+    "mechanism_de": "Diclofenac kann die Wirkung von Furosemid abschwächen und Nierenschäden begünstigen.",
+    "management_de": "Nierenwerte überwachen und alternative Schmerzmittel prüfen.",
+    "quelle": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2857189/"
+  }
+]

@@ -5,7 +5,7 @@ import Home from './Pages/Home'
 import Onboarding from './Pages/Onboarding'
 import StandardMedicationListScreen from './Pages/StandardMedicationListScreen'
 import StandardMedicationScreen from './Pages/StandardMedicationScreen'
-// ExtraMedicationListScreen entfernt
+import ExtraMedicationScreen from './Pages/ExtraMedicationScreen'
 import CatNames from './Pages/CatNames/CatNames'
 import Profile from './Pages/Profile/Profile'
 import ProfileOverview from './Pages/Profile/ProfileOverview'
@@ -24,7 +24,7 @@ const AppRoutes = () => (
     <Route path="/dashboard" element={<Dashboard />} />
     <Route path="/standard-medication" element={<StandardMedicationListScreen />} />
     <Route path="/standard-medication/:id" element={<StandardMedicationScreen />} />
-    {/*  /extra-medication entfernt */}
+    <Route path="/extra-medication" element={<ExtraMedicationScreen />} />
     <Route path="/catnames" element={<CatNames />} />
     <Route path="/profile" element={<Profile />} />
     <Route path="/profile/overview" element={<ProfileOverview />} />

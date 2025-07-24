@@ -5,17 +5,17 @@ const RegisterForm = () => {
     name: '',
     age: '',
     medications: ''
-  });
+  })
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Formulardaten:', formData);
+    e.preventDefault()
+    console.log('Formulardaten:', formData)
     // Hier kannst du später Navigation oder Validierung ergänzen
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -39,4 +39,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default RegisterForm
