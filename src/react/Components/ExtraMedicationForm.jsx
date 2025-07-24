@@ -139,6 +139,13 @@ const ExtraMedicationForm = () => {
           </Typography>
         </Alert>
       )}
+      {JSON.parse(localStorage.getItem('extraMedications') || '[]').map((med, index) => (
+  <Box key={index} sx={{ mt: 2, p: 1, border: '1px solid #ccc', borderRadius: 1 }}>
+    <Typography><strong>Medikament:</strong> {med.name}</Typography>
+    <Typography><strong>Grund:</strong> {med.reason}</Typography>
+  </Box>
+))}
+
     </Box>
   )
 }

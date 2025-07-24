@@ -10,7 +10,6 @@ import {
   Grid,
   Button,
   Divider,
-  Box,
   useTheme,
   Tooltip
 } from '@mui/material'
@@ -22,6 +21,8 @@ import MedicationIcon from '@mui/icons-material/Medication'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import ChecklistIcon from '@mui/icons-material/Checklist'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf'
+import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 
 const Dashboard = () => {
   const { userData } = useOnboarding()
@@ -30,13 +31,15 @@ const Dashboard = () => {
 
   const cardStyle = {
     elevation: 2,
-    borderLeft: `6px solid ${isDark ? '#90caf9' : '#1976d2'}`,
     borderRadius: 2,
     p: 2
   }
 
+  const extraMedications = JSON.parse(localStorage.getItem('extraMedications') || '[]')
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
+      {/* Begrüßung */}
       <Typography variant="h4" gutterBottom>
         👋 Willkommen, {userData.name || 'Benutzer'}!
       </Typography>
@@ -45,32 +48,28 @@ const Dashboard = () => {
         Alter: {userData.age || 'Nicht angegeben'}
       </Typography>
 
-      {/* Ziele */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-        🎯 Deine Ziele
-      </Typography>
-      <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#a5d6a7' : '#4caf50'}` }}>
-        <CardContent>
-          <List>
-            {(userData.goals || []).map((goal, index) => (
-              <ListItem key={index}>
-                <ListItemText primary={goal} />
-              </ListItem>
-            ))}
-            {(!userData.goals || userData.goals.length === 0) && (
-              <Typography color="text.secondary">Keine Ziele ausgewählt.</Typography>
-            )}
-          </List>
-        </CardContent>
-      </Card>
-
-      {/* Übersicht */}
-      <Typography variant="h5" gutterBottom sx={{ mt: 4 }}>
-        🩺 Übersicht
-      </Typography>
       <Grid container spacing={3}>
-        {/* Medikation */}
-        <Grid item xs={12} sm={6} md={4}>
+        {/* Ziele */}
+        <Grid item xs={12}>
+          <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#a5d6a7' : '#4caf50'}` }}>
+            <CardContent>
+              <Typography variant="h6">🎯 Deine Ziele</Typography>
+              <List>
+                {(userData.goals || []).map((goal, i) => (
+                  <ListItem key={`goal-${i}`}>
+                    <ListItemText primary={goal} />
+                  </ListItem>
+                ))}
+                {(!userData.goals || userData.goals.length === 0) && (
+                  <Typography color="text.secondary">Keine Ziele ausgewählt.</Typography>
+                )}
+              </List>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Standard-Medikation */}
+        <Grid item xs={12} md={6}>
           <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#90caf9' : '#1976d2'}` }}>
             <CardContent>
               <Tooltip title="Z.B. Blutdrucktabletten" arrow>
@@ -81,29 +80,52 @@ const Dashboard = () => {
               </Tooltip>
               <List>
                 {(userData.medications || []).map((med, i) => (
-                  <ListItem key={`med-${med.id || i}`}>
+                  <ListItem key={`med-${i}`}>
                     <ListItemText
                       primary={`${med.name} – ${med.dosage}`}
                       secondary={`${med.frequency || '–'}× täglich`}
                     />
                   </ListItem>
                 ))}
-
-                {(userData.goals || []).map((goal, j) => (
-                  <ListItem key={`goal-${j}`}>
-                    <ListItemText primary={goal} />
-                  </ListItem>
-                ))}
-
                 {(!userData.medications || userData.medications.length === 0) && (
                   <Typography color="text.secondary" sx={{ mt: 2 }}>
                     Keine Medikation eingetragen.
                   </Typography>
                 )}
               </List>
-              <Divider sx={{ mt: 2 }} />
-              <Button variant="contained" size="large" fullWidth sx={{ mt: 2 }} href="/standard-medication">
+              <Button variant="contained" fullWidth sx={{ mt: 2 }} href="/standard-medication">
                 Medikation bearbeiten
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        {/* Bedarfsmedikation */}
+        <Grid item xs={12} md={6}>
+          <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#ffcc80' : '#ffa726'}` }}>
+            <CardContent>
+              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <LocalHospitalIcon />
+                Bedarfsmedikationen
+              </Typography>
+              {extraMedications.length === 0 ? (
+                <Typography color="text.secondary" sx={{ mt: 1 }}>
+                  Keine Bedarfsmedikationen eingetragen.
+                </Typography>
+              ) : (
+                <List sx={{ mt: 1 }}>
+                  {extraMedications.map((med, i) => (
+                    <ListItem key={`extra-${i}`}>
+                      <ListItemText
+                        primary={med.name}
+                        secondary={med.reason}
+                      />
+                    </ListItem>
+                  ))}
+                </List>
+              )}
+              <Button variant="contained" fullWidth sx={{ mt: 2 }} href="/extra-medication">
+                Weitere hinzufügen
               </Button>
             </CardContent>
           </Card>
@@ -140,7 +162,7 @@ const Dashboard = () => {
         </Grid>
 
         {/* Verlauf */}
-        <Grid item xs={12}>
+        <Grid item xs={12} md={4}>
           <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#ce93d8' : '#ab47bc'}` }}>
             <CardContent>
               <Tooltip title="Wann du welches Medikament bestätigt hast" arrow>
@@ -154,18 +176,19 @@ const Dashboard = () => {
           </Card>
         </Grid>
 
-        {/* Bedarfsmedikation */}
-        <Grid item xs={12} md={6}>
-          <Card>
+        {/* PDF-Export */}
+        <Grid item xs={12} md={4}>
+          <Card {...cardStyle} sx={{ borderLeft: `6px solid ${isDark ? '#f48fb1' : '#e91e63'}` }}>
             <CardContent>
-              <Typography variant="h6">💡 Bedarfsmedikation</Typography>
-              <Typography color="text.secondary" sx={{ mt: 1 }}>
-                Hier kannst du Medikamente eintragen, die du nur bei Bedarf einnimmst.
+              <Typography variant="h6" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <PictureAsPdfIcon />
+                Export als PDF
               </Typography>
-
-              <Divider sx={{ mt: 2 }} />
-              <Button variant="contained" fullWidth sx={{ mt: 2 }} href="/extra-medication">
-                Bedarfsmedikation hinzufügen
+              <Typography color="text.secondary" sx={{ mt: 1 }}>
+                Erstellt eine PDF deiner aktuellen Medikamentenübersicht.
+              </Typography>
+              <Button variant="contained" fullWidth sx={{ mt: 2 }} href="/medikation-export">
+                PDF herunterladen
               </Button>
             </CardContent>
           </Card>

@@ -23,7 +23,7 @@ const AppRoutes = () => (
     <Route path="/" element={<Home />} />
     <Route path="/onboarding" element={<Onboarding />} />
     <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/dashboard/overview" element={<ExportMedicationOverview />} />
+    <Route path="/medikation-export" element={<ExportMedicationOverview />} />
     <Route path="/standard-medication" element={<StandardMedicationListScreen />} />
     <Route path="/standard-medication/:id" element={<StandardMedicationScreen />} />
     <Route path="/extra-medication" element={<ExtraMedicationScreen />} />
