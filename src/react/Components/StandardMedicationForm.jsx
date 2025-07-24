@@ -113,6 +113,19 @@ const StandardMedicationForm = () => {
           required
           fullWidth
         />
+<Button
+  type="button"
+  variant="outlined"
+  onClick={() => {
+    goToNextStep()
+  }}
+>
+  ➤ Schritt überspringen (keine Medikamente)
+</Button>
+
+
+
+
 
         <Button variant="contained" type="submit">
           Speichern
