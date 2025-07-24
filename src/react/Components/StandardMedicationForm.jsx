@@ -43,7 +43,7 @@ const StandardMedicationForm = () => {
     const med = standardMedicationOptions.find((m) => m.name === selectedMedication)
     if (!med || !frequency) return
 
-    const stored = userData.standardMedications || []
+    const stored = userData.medications || []
     const exists = stored.some((m) => m.name === med.name)
 
     if (exists) {
@@ -73,9 +73,20 @@ const StandardMedicationForm = () => {
     setFrequency('')
   }
 
+  const handleDeleteStandardMed = (index) => {
+    const updatedMeds = [...(userData.medications || [])]
+    updatedMeds.splice(index, 1)
+
+    setUserData((prev) => ({
+      ...prev,
+      medications: updatedMeds
+    }))
+  }
+
   return (
     <>
       <Box
+        id="standard-med-form"
         component="form"
         onSubmit={handleSubmit}
         sx={{
@@ -99,9 +110,7 @@ const StandardMedicationForm = () => {
           >
             {standardMedicationOptions.map((med) => (
               <MenuItem key={med.name} value={med.name}>
-                {med.name}
-                –
-                {med.dosage}
+                {med.name} – {med.dosage}
               </MenuItem>
             ))}
           </Select>
@@ -116,19 +125,39 @@ const StandardMedicationForm = () => {
           required
           fullWidth
         />
-        <Button
-          type="button"
-          variant="outlined"
-          onClick={() => {
-            goToNextStep()
-          }}
-        >
-          ➤ Schritt überspringen (keine Medikamente)
-        </Button>
 
         <Button variant="contained" type="submit">
           Speichern
         </Button>
+      </Box>
+
+      <Box
+        sx={{
+          mt: 4,
+          mx: 'auto',
+          maxWidth: { xs: '90%', sm: '400px' },
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 2
+        }}
+      >
+        <Typography variant="h6">Gespeicherte Standard-Medikation</Typography>
+        {(userData.medications || []).map((med, index) => (
+          <Box key={med.id || index} sx={{ border: '1px solid #ccc', borderRadius: 2, p: 2 }}>
+            <Typography><strong>Medikament:</strong> {med.name}</Typography>
+            <Typography><strong>Dosierung:</strong> {med.dosage}</Typography>
+            <Typography><strong>Häufigkeit:</strong> {med.frequency}× täglich</Typography>
+            <Button
+              variant="outlined"
+              color="error"
+              size="small"
+              sx={{ mt: 1 }}
+              onClick={() => handleDeleteStandardMed(index)}
+            >
+              Löschen
+            </Button>
+          </Box>
+        ))}
       </Box>
 
       <Snackbar

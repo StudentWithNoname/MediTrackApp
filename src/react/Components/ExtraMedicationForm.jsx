@@ -19,42 +19,48 @@ const ExtraMedicationForm = () => {
   const [selectedMedication, setSelectedMedication] = useState('')
   const [reason, setReason] = useState('')
   const [interaction, setInteraction] = useState(null)
+  const [extraMeds, setExtraMeds] = useState([])
 
-  // Lade mögliche Extra-Medikamente (drug2 aus JSON)
   useEffect(() => {
     const uniqueDrug2 = Array.from(new Set(interactionData.map((d) => d.drug2)))
     setAvailableExtraMeds(uniqueDrug2)
   }, [])
 
-  // Lade gespeicherte Standard-Medikamente
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem('standardMedications')) || []
     const names = stored.map((m) => m.name)
     setStandardMeds(names)
   }, [])
 
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem('extraMedications')) || []
+    setExtraMeds(stored)
+  }, [])
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!selectedMedication || !reason) return
 
-    // Wechselwirkungen prüfen: drug1 = Standard, drug2 = extra
     const match = interactionData.find((entry) => standardMeds.some(
       (med) => med.toLowerCase() === entry.drug1.toLowerCase() &&
-          entry.drug2.toLowerCase() === selectedMedication.toLowerCase()
+               entry.drug2.toLowerCase() === selectedMedication.toLowerCase()
     ))
     setInteraction(match || null)
 
-    const newEntry = {
-      name: selectedMedication,
-      reason
-    }
-
-    const stored = JSON.parse(localStorage.getItem('extraMedications')) || []
-    stored.push(newEntry)
-    localStorage.setItem('extraMedications', JSON.stringify(stored))
+    const newEntry = { name: selectedMedication, reason }
+    const updated = [...extraMeds, newEntry]
+    localStorage.setItem('extraMedications', JSON.stringify(updated))
+    setExtraMeds(updated)
 
     setSelectedMedication('')
     setReason('')
+  }
+
+  const handleDelete = (index) => {
+    const updated = [...extraMeds]
+    updated.splice(index, 1)
+    localStorage.setItem('extraMedications', JSON.stringify(updated))
+    setExtraMeds(updated)
   }
 
   const getSeverityColor = (severity) => {
@@ -64,9 +70,7 @@ const ExtraMedicationForm = () => {
   }
 
   return (
-    <Box
-      component="form"
-      onSubmit={handleSubmit}
+    <Box component="form" onSubmit={handleSubmit}
       sx={{
         display: 'flex',
         flexDirection: 'column',
@@ -113,39 +117,30 @@ const ExtraMedicationForm = () => {
           <Typography variant="subtitle2" gutterBottom>
             <strong>Wechselwirkung gefunden:</strong>
           </Typography>
-
           <Typography variant="body2">
-            <em>{interaction.drug1}</em>
-            +
-            <em>{interaction.drug2}</em>
+            <em>{interaction.drug1}</em> + <em>{interaction.drug2}</em>
           </Typography>
-
-          <Typography variant="body2">
-            <strong>Schweregrad:</strong>
-            <br />
-            {interaction.severity}
-          </Typography>
-
-          <Typography variant="body2">
-            <strong>Mechanismus:</strong>
-            <br />
-            {interaction.mechanism_de}
-          </Typography>
-
-          <Typography variant="body2">
-            <strong>Empfehlung:</strong>
-            <br />
-            {interaction.management_de}
-          </Typography>
+          <Typography variant="body2"><strong>Schweregrad:</strong><br />{interaction.severity}</Typography>
+          <Typography variant="body2"><strong>Mechanismus:</strong><br />{interaction.mechanism_de}</Typography>
+          <Typography variant="body2"><strong>Empfehlung:</strong><br />{interaction.management_de}</Typography>
         </Alert>
       )}
-      {JSON.parse(localStorage.getItem('extraMedications') || '[]').map((med, index) => (
-  <Box key={index} sx={{ mt: 2, p: 1, border: '1px solid #ccc', borderRadius: 1 }}>
-    <Typography><strong>Medikament:</strong> {med.name}</Typography>
-    <Typography><strong>Grund:</strong> {med.reason}</Typography>
-  </Box>
-))}
 
+      {extraMeds.map((med, index) => (
+        <Box key={index} sx={{ mt: 2, p: 1, border: '1px solid #ccc', borderRadius: 1 }}>
+          <Typography><strong>Medikament:</strong> {med.name}</Typography>
+          <Typography><strong>Grund:</strong> {med.reason}</Typography>
+          <Button
+            variant="outlined"
+            color="error"
+            size="small"
+            sx={{ mt: 1 }}
+            onClick={() => handleDelete(index)}
+          >
+            Löschen
+          </Button>
+        </Box>
+      ))}
     </Box>
   )
 }
