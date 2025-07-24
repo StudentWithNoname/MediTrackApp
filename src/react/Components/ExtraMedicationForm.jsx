@@ -20,6 +20,7 @@ const ExtraMedicationForm = () => {
   const [reason, setReason] = useState('')
   const [interaction, setInteraction] = useState(null)
   const [extraMeds, setExtraMeds] = useState([])
+  const [awaitingConfirmation, setAwaitingConfirmation] = useState(false)
 
   useEffect(() => {
     const uniqueDrug2 = Array.from(new Set(interactionData.map((d) => d.drug2)))
@@ -37,16 +38,31 @@ const ExtraMedicationForm = () => {
     setExtraMeds(stored)
   }, [])
 
+  const checkInteraction = () => {
+    return interactionData.find((entry) =>
+      standardMeds.some(
+        (med) =>
+          med.toLowerCase() === entry.drug1.toLowerCase() &&
+          entry.drug2.toLowerCase() === selectedMedication.toLowerCase()
+      )
+    )
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!selectedMedication || !reason) return
 
-    const match = interactionData.find((entry) => standardMeds.some(
-      (med) => med.toLowerCase() === entry.drug1.toLowerCase() &&
-               entry.drug2.toLowerCase() === selectedMedication.toLowerCase()
-    ))
-    setInteraction(match || null)
+    const match = checkInteraction()
+    if (match && (match.severity === 'Major' || match.severity === 'Moderate')) {
+      setInteraction(match)
+      setAwaitingConfirmation(true)
+      return
+    }
 
+    saveMedication()
+  }
+
+  const saveMedication = () => {
     const newEntry = { name: selectedMedication, reason }
     const updated = [...extraMeds, newEntry]
     localStorage.setItem('extraMedications', JSON.stringify(updated))
@@ -54,6 +70,8 @@ const ExtraMedicationForm = () => {
 
     setSelectedMedication('')
     setReason('')
+    setInteraction(null)
+    setAwaitingConfirmation(false)
   }
 
   const handleDelete = (index) => {
@@ -108,9 +126,15 @@ const ExtraMedicationForm = () => {
         fullWidth
       />
 
-      <Button variant="contained" color="primary" type="submit">
-        Speichern
-      </Button>
+      {!awaitingConfirmation ? (
+        <Button variant="contained" color="primary" type="submit">
+          Speichern
+        </Button>
+      ) : (
+        <Button variant="contained" color="warning" onClick={saveMedication}>
+          Trotzdem speichern
+        </Button>
+      )}
 
       {interaction && (
         <Alert severity={getSeverityColor(interaction.severity)}>
@@ -120,9 +144,9 @@ const ExtraMedicationForm = () => {
           <Typography variant="body2">
             <em>{interaction.drug1}</em> + <em>{interaction.drug2}</em>
           </Typography>
-          <Typography variant="body2"><strong>Schweregrad:</strong><br />{interaction.severity}</Typography>
-          <Typography variant="body2"><strong>Mechanismus:</strong><br />{interaction.mechanism_de}</Typography>
-          <Typography variant="body2"><strong>Empfehlung:</strong><br />{interaction.management_de}</Typography>
+          <Typography variant="body2"><strong>Schweregrad:</strong> {interaction.severity}</Typography>
+          <Typography variant="body2"><strong>Mechanismus:</strong> {interaction.mechanism_de}</Typography>
+          <Typography variant="body2"><strong>Empfehlung:</strong> {interaction.management_de}</Typography>
         </Alert>
       )}
 

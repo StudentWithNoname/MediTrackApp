@@ -60,10 +60,17 @@ const StandardMedicationForm = () => {
       frequency
     }
 
+    const updatedMeds = [...stored, entry]
+
+    // In userData speichern
     setUserData((prev) => ({
       ...prev,
-      medications: [...(prev.medications || []), entry]
+      medications: updatedMeds
     }))
+
+    // Auch separat im localStorage speichern (nur Name)
+    const simpleMedList = updatedMeds.map((m) => ({ name: m.name }))
+    localStorage.setItem('standardMedications', JSON.stringify(simpleMedList))
 
     setMessage('Medikation erfolgreich gespeichert.')
     setAlertType('success')
@@ -81,6 +88,10 @@ const StandardMedicationForm = () => {
       ...prev,
       medications: updatedMeds
     }))
+
+    // Auch localStorage aktualisieren
+    const simpleMedList = updatedMeds.map((m) => ({ name: m.name }))
+    localStorage.setItem('standardMedications', JSON.stringify(simpleMedList))
   }
 
   return (

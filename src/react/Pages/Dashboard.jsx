@@ -10,6 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useOnboarding } from '../Context/OnboardingContext'
 import MedicationIntakeReminder from '../Components/MedicationIntakeReminder'
+import ExtraMedicationFeedback from '../Components/ExtraMedicationFeedback'
 
 // Material Icons
 import MedicationIcon from '@mui/icons-material/Medication'
@@ -17,6 +18,7 @@ import EmergencyRecordingIcon from '@mui/icons-material/EmergencyRecording'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
 import BarChartIcon from '@mui/icons-material/BarChart'
 import DescriptionIcon from '@mui/icons-material/Description'
+import ReportIcon from '@mui/icons-material/Report'
 
 const tiles = [
   {
@@ -53,6 +55,13 @@ const tiles = [
     description: 'PDF-Übersicht exportieren',
     route: '/medikation-export',
     color: '#455a64'
+  },
+  {
+    label: 'Beschwerden',
+    icon: <ReportIcon fontSize="large" />,
+    description: 'Feedback nach Bedarfsmedikation',
+    route: '', // kein Wechsel, bleibt auf Dashboard
+    color: '#c2185b'
   }
 ]
 
@@ -72,7 +81,6 @@ const Dashboard = () => {
           : 'Willkommen im MediTrack-Dashboard'}
       </Typography>
 
-      {/* Zielwerte anzeigen, falls vorhanden */}
       {goals.medicationAdherence && (
         <Typography variant="body2" textAlign="center" sx={{ mt: 1 }}>
           Ziel: {goals.medicationAdherence}% Einnahmequote täglich
@@ -94,6 +102,7 @@ const Dashboard = () => {
         </Typography>
       )}
 
+      {/* Kachelübersicht */}
       <Grid container spacing={2} sx={{ mt: 3 }}>
         {tiles.map((tile, index) => (
           <Grid item xs={12} sm={6} md={4} key={index}>
@@ -101,12 +110,22 @@ const Dashboard = () => {
               sx={{
                 backgroundColor: tile.color,
                 color: '#fff',
-                height: '100%',
+                height: 180,
                 borderRadius: 2,
                 boxShadow: 4
               }}
             >
-              <CardActionArea onClick={() => navigate(tile.route)}>
+              {tile.route ? (
+                <CardActionArea onClick={() => navigate(tile.route)}>
+                  <CardContent sx={{ textAlign: 'center', py: 3 }}>
+                    {tile.icon}
+                    <Typography variant="h6" sx={{ mt: 1 }}>
+                      {tile.label}
+                    </Typography>
+                    <Typography variant="body2">{tile.description}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              ) : (
                 <CardContent sx={{ textAlign: 'center', py: 3 }}>
                   {tile.icon}
                   <Typography variant="h6" sx={{ mt: 1 }}>
@@ -114,12 +133,23 @@ const Dashboard = () => {
                   </Typography>
                   <Typography variant="body2">{tile.description}</Typography>
                 </CardContent>
-              </CardActionArea>
+              )}
             </Card>
           </Grid>
         ))}
       </Grid>
 
+      {/* Feedback-Komponente separat */}
+      <Box sx={{ mt: 4 }}>
+        <Typography variant="h6" sx={{ mb: 1 }}>
+          Beschwerden nach Bedarfsmedikation
+        </Typography>
+        <Card sx={{ p: 2 }}>
+          <ExtraMedicationFeedback />
+        </Card>
+      </Box>
+
+      {/* Erinnerung unten */}
       <Box sx={{ mt: 4 }}>
         <MedicationIntakeReminder />
       </Box>
