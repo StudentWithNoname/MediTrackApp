@@ -16,6 +16,7 @@ import ExportMedicationOverview from './Components/ExportMedicationOverview'
 import Error404 from './Pages/Error404'
 import MedicationHistory from './Components/MedicationHistory'
 import MedicationStats from './Components/MedicationStats'
+import ComplaintPage from './Pages/ComplaintPage'
 
 const AppRoutes = () => (
   <Routes>
@@ -35,6 +36,7 @@ const AppRoutes = () => (
     <Route path="/profile" element={<Profile />} />
     <Route path="/profile/overview" element={<ProfileOverview />} />
     <Route path="/profile/settings" element={<ProfileSettings />} />
+    <Route path="/complaints" element={<ComplaintPage />} />
 
     <Route path="*" element={<Error404 />} />
   </Routes>

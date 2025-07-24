@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import ComplaintSummary from './ComplaintSummary'
+
 import {
   Box,
   Typography,
@@ -96,5 +98,6 @@ const ExtraMedicationFeedback = () => {
     </Box>
   )
 }
+  <ComplaintSummary />
 
 export default ExtraMedicationFeedback
