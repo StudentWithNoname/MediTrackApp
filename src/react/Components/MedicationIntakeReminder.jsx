@@ -10,7 +10,7 @@ import {
 import { useOnboarding } from '../Context/OnboardingContext'
 
 const MedicationIntakeReminder = ({ delay = 10000, snooze = 5000 }) => {
-  const { userData } = useOnboarding()
+  const { userData,setUserData } = useOnboarding()
   const [open, setOpen] = useState(false)
   const [dismissed, setDismissed] = useState(false)
   const timerRef = useRef(null)
@@ -34,17 +34,59 @@ const MedicationIntakeReminder = ({ delay = 10000, snooze = 5000 }) => {
     setOpen(false)
     setDismissed(true)
     console.log(`confirmed: ${med?.name}`)
+     if (med) {
+    setUserData((prev) => ({
+      ...prev,
+      medicationHistory: [
+        ...(prev.medicationHistory || []),
+        {
+          id: med.id,
+          name: med.name,
+          action: 'confirmed',
+          timestamp: Date.now()
+        }
+      ]
+    }))
+  }
   }
 
   const handleWillNotTake = () => {
     setOpen(false)
     console.log(`cancelled: ${med?.name}`)
+      if (med) {
+    setUserData((prev) => ({
+      ...prev,
+      medicationHistory: [
+        ...(prev.medicationHistory || []),
+        {
+          id: med.id,
+          name: med.name,
+          action: 'skipped',
+          timestamp: Date.now()
+        }
+      ]
+    }))
+  }
   }
 
   const handleSnooze = () => {
     setOpen(false)
     scheduleReminder(snooze)
     console.log(`snoozed: ${med?.name}`)
+    if (med) {
+    setUserData((prev) => ({
+      ...prev,
+      medicationHistory: [
+        ...(prev.medicationHistory || []),
+        {
+          id: med.id,
+          name: med.name,
+          action: 'snoozed',
+          timestamp: Date.now()
+        }
+      ]
+    }))
+  }
   }
 
   if (!med) return null
