@@ -6,7 +6,12 @@ import MedicationOverviewScreen from '../Pages/MedicationOverviewScreen'
 const ExportMedicationOverview = () => {
   const { userData } = useOnboarding()
   const [pdfContent, setPdfContent] = useState(undefined)
-  const fileName = `${userData.name || 'Benutzer'}_Medikation.pdf`
+
+  // Profildaten korrekt extrahieren
+  const profile = userData?.profile || {}
+  const name = profile.name || 'Benutzer'
+  const age = profile.age || '–'
+  const fileName = `${name}_Medikation.pdf`
 
   useEffect(() => {
     const doc = new JsPDF()
@@ -17,8 +22,8 @@ const ExportMedicationOverview = () => {
 
     // Basisdaten
     doc.setFontSize(12)
-    doc.text(`Name: ${userData.name || 'Unbekannt'}`, 20, 40)
-    doc.text(`Alter: ${userData.age || '–'}`, 20, 50)
+    doc.text(`Name: ${name}`, 20, 40)
+    doc.text(`Alter: ${age} Jahre`, 20, 50)
 
     // Standard-Medikation
     const standardMeds = userData.medications || []

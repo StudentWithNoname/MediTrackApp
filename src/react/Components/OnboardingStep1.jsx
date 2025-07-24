@@ -7,11 +7,23 @@ const OnboardingStep1 = ({ onNext }) => {
   const { userData, setUserData } = useOnboarding()
   const [touched, setTouched] = useState({ name: false, age: false })
 
-  const isValid = userData.name.trim() !== '' && userData.age.trim() !== ''
+  // Zugriff auf Profildaten (falls vorhanden)
+  const profile = userData.profile || {}
+  const name = profile.name || ''
+  const age = profile.age || ''
+
+  // Felder gültig?
+  const isValid = name.trim() !== '' && age.trim() !== ''
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setUserData((prev) => ({ ...prev, [name]: value }))
+    setUserData((prev) => ({
+      ...prev,
+      profile: {
+        ...(prev.profile || {}),
+        [name]: value
+      }
+    }))
   }
 
   const handleSubmit = (e) => {
@@ -22,7 +34,7 @@ const OnboardingStep1 = ({ onNext }) => {
   return (
     <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400, mx: 'auto', mt: 4 }}>
       <Typography variant="h5" gutterBottom>
-        👋 Willkommen bei Meditrack
+        👋 Willkommen bei MediTrack
       </Typography>
 
       <TextField
@@ -30,11 +42,11 @@ const OnboardingStep1 = ({ onNext }) => {
         name="name"
         fullWidth
         margin="normal"
-        value={userData.name}
+        value={name}
         onChange={handleChange}
         onBlur={() => setTouched((t) => ({ ...t, name: true }))}
-        error={touched.name && userData.name.trim() === ''}
-        helperText={touched.name && userData.name.trim() === '' ? 'Bitte gib deinen Namen ein' : ''}
+        error={touched.name && name.trim() === ''}
+        helperText={touched.name && name.trim() === '' ? 'Bitte gib deinen Namen ein' : ''}
       />
 
       <TextField
@@ -43,11 +55,11 @@ const OnboardingStep1 = ({ onNext }) => {
         type="number"
         fullWidth
         margin="normal"
-        value={userData.age}
+        value={age}
         onChange={handleChange}
         onBlur={() => setTouched((t) => ({ ...t, age: true }))}
-        error={touched.age && userData.age.trim() === ''}
-        helperText={touched.age && userData.age.trim() === '' ? 'Bitte gib dein Alter ein' : ''}
+        error={touched.age && age.trim() === ''}
+        helperText={touched.age && age.trim() === '' ? 'Bitte gib dein Alter ein' : ''}
       />
 
       <Button variant="contained" type="submit" fullWidth disabled={!isValid} sx={{ mt: 2 }}>
