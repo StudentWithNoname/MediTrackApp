@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 // 1️⃣ Context erzeugen
 const OnboardingContext = createContext()
@@ -11,11 +12,11 @@ export const OnboardingProvider = ({ children }) => {
     return stored
       ? JSON.parse(stored)
       : {
-          name: '',
-          age: '',
-          medications: [],
-          goals: []
-        }
+        name: '',
+        age: '',
+        medications: [],
+        goals: []
+      }
   })
 
   // bei jeder Änderung automatisch speichern
@@ -28,6 +29,10 @@ export const OnboardingProvider = ({ children }) => {
       {children}
     </OnboardingContext.Provider>
   )
+}
+
+OnboardingProvider.propTypes = {
+  children: PropTypes.node.isRequired
 }
 
 // 3️⃣ Custom Hook zum Verwenden

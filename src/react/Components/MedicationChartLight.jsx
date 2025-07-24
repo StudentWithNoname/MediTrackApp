@@ -1,5 +1,4 @@
 import React from 'react'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Typography,
@@ -11,6 +10,7 @@ import {
   TableRow,
   Paper
 } from '@mui/material'
+import { useOnboarding } from '../Context/OnboardingContext'
 
 const MedicationChartLight = () => {
   const { userData } = useOnboarding()

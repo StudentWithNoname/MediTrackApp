@@ -22,8 +22,8 @@ const StandardMedicationDetailScreen = () => {
   const [frequency, setFrequency] = useState(med?.frequency || '')
 
   const handleUpdate = () => {
-    const updatedList = userData.medications.map((m) =>
-      m.id === id ? { ...m, name, dosage, frequency } : m
+    const updatedList = userData.medications.map(
+      (m) =>  m.id === id ? { ...m, name, dosage, frequency } : m
     )
     setUserData((prev) => ({ ...prev, medications: updatedList }))
   }

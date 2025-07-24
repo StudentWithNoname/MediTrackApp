@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 
 const RegisterForm = () => {
   const [formData, setFormData] = useState({
@@ -8,7 +8,7 @@ const RegisterForm = () => {
   })
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = (e) => {
@@ -36,7 +36,7 @@ const RegisterForm = () => {
       <br />
       <button type="submit">Weiter</button>
     </form>
-  );
-};
+  )
+}
 
 export default RegisterForm
