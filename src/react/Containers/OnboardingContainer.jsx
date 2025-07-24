@@ -46,7 +46,9 @@ const OnboardingContainer = () => {
       </div>
 
       <p style={{ textAlign: 'center', marginTop: '1rem' }}>
-        Schritt {step} von 3
+        Schritt
+        {step}
+        von 3
       </p>
     </div>
   )

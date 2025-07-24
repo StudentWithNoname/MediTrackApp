@@ -13,7 +13,6 @@ import {
 } from '@mui/material'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'
 import MedicationIcon from '@mui/icons-material/Medication'
-import PetsIcon from '@mui/icons-material/Pets'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 
 const Home = () => (

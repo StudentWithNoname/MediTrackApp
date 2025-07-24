@@ -10,18 +10,17 @@ import {
   Grid,
   Button,
   Divider,
-  Box,
   useTheme,
   Tooltip
 } from '@mui/material'
-import { useOnboarding } from '../Context/OnboardingContext'
-import MedicationIntakeReminder from '../Components/MedicationIntakeReminder'
-import MedicationChartLight from '../Components/MedicationChartLight'
-import MedicationStats from '../Components/MedicationStats'
 import MedicationIcon from '@mui/icons-material/Medication'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import ChecklistIcon from '@mui/icons-material/Checklist'
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive'
+import { useOnboarding } from '../Context/OnboardingContext'
+import MedicationIntakeReminder from '../Components/MedicationIntakeReminder'
+import MedicationChartLight from '../Components/MedicationChartLight'
+import MedicationStats from '../Components/MedicationStats'
 
 const Dashboard = () => {
   const { userData } = useOnboarding()
@@ -38,11 +37,14 @@ const Dashboard = () => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4 }}>
       <Typography variant="h4" gutterBottom>
-        👋 Willkommen, {userData.name || 'Benutzer'}!
+        👋 Willkommen,
+        {userData.name || 'Benutzer'}
+        !
       </Typography>
 
       <Typography variant="subtitle1" color="text.secondary" gutterBottom>
-        Alter: {userData.age || 'Nicht angegeben'}
+        Alter:
+        {userData.age || 'Nicht angegeben'}
       </Typography>
 
       {/* Ziele */}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useOnboarding } from '../Context/OnboardingContext'
 import { TextField, Button, Typography, Box } from '@mui/material'
+import { useOnboarding } from '../Context/OnboardingContext'
 
 const OnboardingStep1 = ({ onNext }) => {
   const { userData, setUserData } = useOnboarding()

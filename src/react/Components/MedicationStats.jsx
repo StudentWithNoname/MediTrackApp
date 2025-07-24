@@ -1,5 +1,4 @@
 import React from 'react'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Typography,
@@ -9,6 +8,7 @@ import {
   Divider,
   Paper
 } from '@mui/material'
+import { useOnboarding } from '../Context/OnboardingContext'
 
 const MedicationStats = () => {
   const { userData } = useOnboarding()
@@ -44,13 +44,13 @@ const MedicationStats = () => {
           <Typography variant="h6" gutterBottom>{medName}</Typography>
           <List>
             <ListItem>
-              <ListItemText primary={`Bestätigt`} secondary={`${actions.confirmed}×`} />
+              <ListItemText primary="Bestätigt" secondary={`${actions.confirmed}×`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Übersprungen`} secondary={`${actions.skipped}×`} />
+              <ListItemText primary="Übersprungen" secondary={`${actions.skipped}×`} />
             </ListItem>
             <ListItem>
-              <ListItemText primary={`Verschoben (Snooze)`} secondary={`${actions.snoozed}×`} />
+              <ListItemText primary="Verschoben (Snooze)" secondary={`${actions.snoozed}×`} />
             </ListItem>
           </List>
           <Divider />
