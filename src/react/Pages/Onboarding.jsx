@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+
+import { Container, Box, Paper, Typography } from '@mui/material'
+
 import OnboardingStep1 from '../Components/OnboardingStep1'
 import OnboardingStep2 from '../Components/OnboardingStep2'
 import OnboardingStep3 from '../Components/OnboardingStep3'
-
-import { Container, Box, Paper, Typography } from '@mui/material'
 
 const Onboarding = () => {
   const [step, setStep] = useState(1)

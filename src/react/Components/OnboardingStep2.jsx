@@ -1,6 +1,4 @@
 import React from 'react'
-import { useOnboarding } from '../Context/OnboardingContext'
-import StandardMedicationForm from '../Components/StandardMedicationForm'
 import {
   Box,
   Typography,
@@ -10,6 +8,10 @@ import {
   Button,
   Alert
 } from '@mui/material'
+
+import PropTypes from 'prop-types'
+import { useOnboarding } from '../Context/OnboardingContext'
+import StandardMedicationForm from './StandardMedicationForm'
 
 const OnboardingStep2 = ({ onBack, onNext }) => {
   const { userData } = useOnboarding()
@@ -26,13 +28,11 @@ const OnboardingStep2 = ({ onBack, onNext }) => {
         Wähle Medikamente aus unserer Liste. Du kannst später weitere hinzufügen.
       </Typography>
 
-      {/* Formular zur Auswahl */}
       <StandardMedicationForm />
 
-      {/* Liste der gewählten Medikamente */}
       {canProceed ? (
         <Box sx={{ mt: 4 }}>
-          <Typography variant="h6" gutterBottom> Ausgewählt:</Typography>
+          <Typography variant="h6" gutterBottom>Ausgewählt:</Typography>
           <List>
             {userData.medications.map((med) => (
               <ListItem key={med.id}>
@@ -50,7 +50,6 @@ const OnboardingStep2 = ({ onBack, onNext }) => {
         </Alert>
       )}
 
-      {/*  Navigation */}
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 4 }}>
         <Button variant="outlined" onClick={onBack}>
           Zurück
@@ -65,6 +64,11 @@ const OnboardingStep2 = ({ onBack, onNext }) => {
       </Box>
     </Box>
   )
+}
+
+OnboardingStep2.propTypes = {
+  onBack: PropTypes.func.isRequired,
+  onNext: PropTypes.func.isRequired
 }
 
 export default OnboardingStep2

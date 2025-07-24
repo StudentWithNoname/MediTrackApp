@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useOnboarding } from '../Context/OnboardingContext'
 import {
   Box,
   Typography,
@@ -8,8 +7,9 @@ import {
   Button,
   Divider
 } from '@mui/material'
-import StandardMedicationForm from '../Components/StandardMedicationForm'
+import { useOnboarding } from '../Context/OnboardingContext'
 
+import StandardMedicationForm from '../Components/StandardMedicationForm'
 
 const StandardMedicationDetailScreen = () => {
   const { id } = useParams()
